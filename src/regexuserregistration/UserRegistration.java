@@ -34,6 +34,15 @@ public class UserRegistration {
         else
             System.out.println("Invalid Input..!\n Please enter valid email-id");
     }
+    public static void isValidMobNum(String mobNum){        // validation for mobile number
+        String regex = "[0-9]{2}+\\s+[789][0-9]{9}";        // \\s provides single space
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(mobNum);
+        if(matcher.matches()){
+            System.out.println("Your Mobile Number ==> "+mobNum);}
+        else{
+            System.out.println("Invalid Input..!\nPlease enter valid Mobile Number");}
+    }
 
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
@@ -48,5 +57,10 @@ public class UserRegistration {
         System.out.println("Enter Email-id: ");
         String email = sc.next();
         isValidEmail(email);            // validating email-id
+
+        System.out.println("Enter Mobile Number: ");
+        sc.nextLine();
+        String mobNum = sc.nextLine();
+        isValidMobNum(mobNum);          // validating mobile number
     }
 }
