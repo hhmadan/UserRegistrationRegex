@@ -43,7 +43,17 @@ public class UserRegistration {
         else{
             System.out.println("Invalid Input..!\nPlease enter valid Mobile Number");}
     }
+    public static void isValidPassword(String password){     // validation for password
+        // Rule1-Password can be alphanumeric with minimum 8 and above characters
 
+        String regex = "[a-zA-z0-9]{8,}";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(password);
+        if(matcher.matches())
+            System.out.println("Great..! Perfect Password");
+        else
+            System.out.println("Invalid Input..!\nPlease enter valid Password");
+    }
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter First Name: ");
@@ -62,5 +72,9 @@ public class UserRegistration {
         sc.nextLine();
         String mobNum = sc.nextLine();
         isValidMobNum(mobNum);          // validating mobile number
+
+        System.out.println("Create Password");
+        String password = sc.next();
+        isValidPassword(password);      // validating password
     }
 }
