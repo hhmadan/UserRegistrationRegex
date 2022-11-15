@@ -26,7 +26,7 @@ public class UserRegistration {
             System.out.println("Invalid Input..!\nPlease Enter Valid Last Name with First Letter Capital And Minimum of 3 Letters");
     }
     public static void isValidEmail(String email){          // validate email-id
-        String regex = "^[a-z0-9]+\\.?+[a-z]?+@+[a-z]+\\.+[a-z]+\\.?+[a-z]?$";
+        String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,5}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
         if(matcher.matches())
@@ -47,6 +47,7 @@ public class UserRegistration {
         // Rule1-Password can be alphanumeric with minimum 8 and above characters
         // Rule2-Password must have at least 1 Upper case letter
         // Rule3-Password must have at least 1 numeric
+        // Rule4-Password must have at least 1 special character
 
         String regex = "^(?=.*[A-Z])" +                     // at least 1 uppercase
                 "(?=.*\\d)" +                               // at least 1 numeric
