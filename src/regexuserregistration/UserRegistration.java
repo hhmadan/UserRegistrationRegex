@@ -46,8 +46,11 @@ public class UserRegistration {
     public static void isValidPassword(String password){     // validation for password
         // Rule1-Password can be alphanumeric with minimum 8 and above characters
         // Rule2-Password must have at least 1 Upper case letter
+        // Rule3-Password must have at least 1 numeric
 
-        String regex = "^(?=.*[A-Z])[a-zA-Z0-9]*.{8,}$";      //at least 1 uppercase and repeat alphanumerics with minimum of 8 characters
+        String regex = "^(?=.*[A-Z])" +                     // at least 1 uppercase
+                "(?=.*[0-9])" +                             // at least 1 numeric
+                "[a-zA-Z0-9]*.{8,}$";                       // repeat alphanumerics with minimum of 8 characters
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(password);
         if(matcher.matches())
