@@ -1,10 +1,12 @@
 package regexuserregistration;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class UserRegistration {
+    static ArrayList<String> list = new ArrayList<>();
     public static boolean validateNameRegex(String input){
         String regex = "[A-Z][a-z]{2,}";
         Pattern pattern = Pattern.compile(regex);
@@ -25,14 +27,27 @@ public class UserRegistration {
         else
             System.out.println("Invalid Input..!\nPlease Enter Valid Last Name with First Letter Capital And Minimum of 3 Letters");
     }
-    public static void isValidEmail(String email){          // validate email-id
-        String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,5}$";
+    public static void isValidEmail(){          // validate email-id
+        //valid mail ids
+        list.add("abc@yahoo.com");
+        list.add("abc-100@yahoo.com");
+        list.add("abc.100@yahoo.com");
+        list.add("abc111@abc.com");
+        //invalid mail ids
+        list.add("abc@.com.my");
+        list.add("abc123@gmail.c");
+        list.add("abc..2002@gmail.com");
+        list.add(".abc@abc.com");
+
+        String regex = "^[a-zA-Z0-9_-]+(?:\\.[a-zA-Z0-9_-]+)*@(?:[a-zA-Z0-9]+\\.)+[a-zA-Z]{2,5}$";
         Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(email);
-        if(matcher.matches())
-            System.out.println("Your mail-id ==> "+email);
-        else
-            System.out.println("Invalid Input..!\n Please enter valid email-id");
+        for(int i =0; i< list.size();i++){
+            Matcher matcher = pattern.matcher(list.get(i));
+            if(matcher.matches())
+                System.out.println("This is valid mail-id ==> "+list.get(i));
+            else
+                System.out.println("This is Invalid mail-id ==> "+list.get(i));
+        }
     }
     public static void isValidMobNum(String mobNum){        // validation for mobile number
         String regex = "[0-9]{2}+\\s+[789][0-9]{9}";        // \\s provides single space
@@ -70,9 +85,9 @@ public class UserRegistration {
         String lName = sc.next();
         isValidLastName(lName);         // validating last name
 
-        System.out.println("Enter Email-id: ");
-        String email = sc.next();
-        isValidEmail(email);            // validating email-id
+//        System.out.println("Enter Email-id: ");
+//        String email = sc.next();
+        isValidEmail();            // validating email-id
 
         System.out.println("Enter Mobile Number: ");
         sc.nextLine();
